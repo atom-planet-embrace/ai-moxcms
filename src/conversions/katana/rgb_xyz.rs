@@ -34,6 +34,8 @@ use crate::conversions::katana::{KatanaInitialStage, KatanaIntermediateStage};
 use crate::err::try_vec;
 use crate::{CmsError, ColorProfile, Layout, Matrix3f, PointeeSizeExpressible, TransformOptions};
 use num_traits::AsPrimitive;
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
 use core::marker::PhantomData;
 
 struct KatanaRgbLinearizationStage<T: Clone, const LAYOUT: u8, const LINEAR_CAP: usize> {

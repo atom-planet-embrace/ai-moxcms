@@ -42,8 +42,8 @@ use crate::{
     TransformExecutor, TransformOptions,
 };
 use num_traits::AsPrimitive;
-#[cfg(not(feature = "std"))]
-use num_traits::float::FloatCore;
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
 use core::arch::x86_64::*;
 use core::marker::PhantomData;
 use alloc::sync::Arc;

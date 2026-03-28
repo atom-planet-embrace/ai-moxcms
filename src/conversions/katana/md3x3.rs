@@ -38,6 +38,8 @@ use crate::{
     Matrix3d, Matrix3f, PointeeSizeExpressible, TransformOptions, Vector3d, Vector3f,
 };
 use num_traits::AsPrimitive;
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
 use core::marker::PhantomData;
 
 #[derive(Copy, Clone, Ord, PartialOrd, Eq, PartialEq, Debug)]

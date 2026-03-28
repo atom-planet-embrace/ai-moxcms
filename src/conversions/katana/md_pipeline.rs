@@ -39,6 +39,8 @@ use crate::{
     CmsError, DataColorSpace, Layout, MalformedSize, PointeeSizeExpressible, TransformOptions,
 };
 use num_traits::AsPrimitive;
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
 use core::array::from_fn;
 use core::marker::PhantomData;
 

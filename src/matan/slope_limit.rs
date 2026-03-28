@@ -30,6 +30,8 @@
 use crate::PointeeSizeExpressible;
 use crate::matan::is_curve_descending;
 use num_traits::AsPrimitive;
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
 
 pub(crate) fn limit_slope<T: Copy + AsPrimitive<f32> + PartialOrd + PointeeSizeExpressible>(
     curve: &mut [T],
