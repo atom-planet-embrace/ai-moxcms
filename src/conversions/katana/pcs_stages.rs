@@ -26,11 +26,14 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::vec;
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::katana::KatanaIntermediateStage;
 use crate::conversions::katana::stages::BlackholeIntermediateStage;
 use crate::mlaf::mlaf;
 use crate::{CmsError, ColorProfile, DataColorSpace, Matrix3f, ProfileVersion};
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 pub(crate) struct KatanaMatrixStage {
     pub(crate) matrices: Vec<Matrix3f>,
@@ -63,7 +66,7 @@ impl KatanaIntermediateStage<f32> for KatanaMatrixStage {
             }
         }
 
-        Ok(std::mem::take(input))
+        Ok(core::mem::take(input))
     }
 }
 

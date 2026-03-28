@@ -27,6 +27,8 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "lut")]
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 #[cfg(feature = "any_to_any")]
 use crate::conversions::katana::KatanaInitialStage;
 use crate::err::try_vec;
@@ -38,7 +40,7 @@ use crate::{
     PointeeSizeExpressible, Stage, TransformOptions, Vector3f,
 };
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 #[allow(unused)]
 #[derive(Default)]

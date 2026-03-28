@@ -27,13 +27,14 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "extended_range")]
+use alloc::boxed::Box;
 use crate::mlaf::mlaf;
 use crate::transform::PointeeSizeExpressible;
 use crate::trc::ToneCurveEvaluator;
 use crate::{CmsError, Layout, Rgb, TransformExecutor, Vector3f};
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
-use std::sync::Arc;
+use core::marker::PhantomData;
+use alloc::sync::Arc;
 
 struct TransformRgbToGrayExtendedExecutor<T, const SRC_LAYOUT: u8, const DST_LAYOUT: u8> {
     linear_eval: Box<dyn ToneCurveEvaluator + Send + Sync>,

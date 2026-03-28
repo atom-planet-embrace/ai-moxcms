@@ -27,6 +27,8 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "sse_luts")]
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::LutBarycentricReduction;
 use crate::conversions::interpolator::BarycentricWeight;
 use crate::conversions::sse::interpolator_q0_15::*;
@@ -34,10 +36,10 @@ use crate::transform::PointeeSizeExpressible;
 use crate::{CmsError, DataColorSpace, InterpolationMethod, Layout, TransformExecutor};
 use num_traits::AsPrimitive;
 #[cfg(target_arch = "x86")]
-use std::arch::x86::*;
+use core::arch::x86::*;
 #[cfg(target_arch = "x86_64")]
-use std::arch::x86_64::*;
-use std::marker::PhantomData;
+use core::arch::x86_64::*;
+use core::marker::PhantomData;
 
 pub(crate) struct TransformLut4To3SseQ0_15<
     T,

@@ -28,9 +28,9 @@
  */
 use crate::Xyz;
 use crate::jzazbz::Jzazbz;
-use num_traits::Pow;
+use num_traits::{Float, Pow};
 use pxfm::{f_atan2f, f_cbrtf, f_hypot3f, f_hypotf, f_powf, f_sincosf, f_sinf};
-use std::ops::{
+use core::ops::{
     Add, AddAssign, Div, DivAssign, Index, IndexMut, Mul, MulAssign, Neg, Sub, SubAssign,
 };
 

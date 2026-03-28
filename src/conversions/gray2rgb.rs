@@ -27,11 +27,13 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #[cfg(feature = "in_place")]
+use alloc::vec;
+use alloc::boxed::Box;
 use crate::InPlaceTransformExecutor;
 use crate::transform::PointeeSizeExpressible;
 use crate::{CmsError, Layout, TransformExecutor};
-use num_traits::AsPrimitive;
-use std::sync::Arc;
+use num_traits::{AsPrimitive, Float};
+use alloc::sync::Arc;
 
 #[derive(Clone)]
 struct TransformGray2RgbFusedExecutor<T, const SRC_LAYOUT: u8, const DEST_LAYOUT: u8> {

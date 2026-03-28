@@ -26,9 +26,11 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::string::String;
+use alloc::vec::Vec;
 use crate::RenderingIntent;
-use std::error::Error;
-use std::fmt::Display;
+use core::error::Error;
+use core::fmt::Display;
 
 #[derive(Debug, Copy, Clone, PartialOrd, PartialEq)]
 pub struct MalformedSize {
@@ -68,7 +70,7 @@ pub enum CmsError {
 }
 
 impl Display for CmsError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         match self {
             CmsError::LaneSizeMismatch => f.write_str("Lanes length must match"),
             CmsError::LaneMultipleOfChannels => {
@@ -129,10 +131,10 @@ impl Error for CmsError {}
 
 macro_rules! try_vec {
     () => {
-        Vec::new()
+        alloc::vec::Vec::new()
     };
     ($elem:expr; $n:expr) => {{
-        let mut v = Vec::new();
+        let mut v = alloc::vec::Vec::new();
         v.try_reserve_exact($n)
             .map_err(|_| crate::err::CmsError::OutOfMemory($n))?;
         v.resize($n, $elem);

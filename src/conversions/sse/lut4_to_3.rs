@@ -27,6 +27,8 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "sse_luts")]
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::LutBarycentricReduction;
 use crate::conversions::interpolator::BarycentricWeight;
 use crate::conversions::lut_transforms::Lut4x3Factory;
@@ -41,11 +43,11 @@ use crate::{
 };
 use num_traits::AsPrimitive;
 #[cfg(target_arch = "x86")]
-use std::arch::x86::*;
+use core::arch::x86::*;
 #[cfg(target_arch = "x86_64")]
-use std::arch::x86_64::*;
-use std::marker::PhantomData;
-use std::sync::Arc;
+use core::arch::x86_64::*;
+use core::marker::PhantomData;
+use alloc::sync::Arc;
 
 struct TransformLut4To3Sse<
     T,

@@ -26,6 +26,7 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::vec::Vec;
 use crate::matan::*;
 use crate::reader::{
     s15_fixed16_number_to_double, uint8_number_to_float_fast, uint16_number_to_float_fast,

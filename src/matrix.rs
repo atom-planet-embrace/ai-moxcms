@@ -30,7 +30,7 @@ use crate::math::{FusedMultiplyAdd, FusedMultiplyNegAdd};
 use crate::mlaf::{mlaf, neg_mlaf};
 use crate::reader::s15_fixed16_number_to_double;
 use num_traits::{AsPrimitive, MulAdd};
-use std::ops::{Add, Div, Mul, Neg, Shr, Sub};
+use core::ops::{Add, Div, Mul, Neg, Shr, Sub};
 
 /// Vector math helper
 #[repr(transparent)]

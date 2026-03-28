@@ -12,8 +12,8 @@ use pxfm::{
     f_exp, f_exp2, f_exp2f, f_exp10, f_exp10f, f_expf, f_log, f_log2, f_log2f, f_log10, f_log10f,
     f_logf, f_pow, f_powf,
 };
-use std::cmp::Ordering;
-use std::ops::{Add, AddAssign, Div, DivAssign, Index, IndexMut, Mul, MulAssign, Neg, Sub};
+use core::cmp::Ordering;
+use core::ops::{Add, AddAssign, Div, DivAssign, Index, IndexMut, Mul, MulAssign, Neg, Sub};
 
 #[repr(C)]
 #[derive(Debug, PartialOrd, PartialEq, Clone, Copy, Default)]

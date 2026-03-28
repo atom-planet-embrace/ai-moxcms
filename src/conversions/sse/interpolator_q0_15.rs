@@ -30,10 +30,10 @@
 use crate::conversions::interpolator::BarycentricWeight;
 use crate::math::FusedMultiplyAdd;
 #[cfg(target_arch = "x86")]
-use std::arch::x86::*;
+use core::arch::x86::*;
 #[cfg(target_arch = "x86_64")]
-use std::arch::x86_64::*;
-use std::ops::{Add, Mul, Sub};
+use core::arch::x86_64::*;
+use core::ops::{Add, Mul, Sub};
 
 #[repr(align(8), C)]
 pub(crate) struct SseAlignedI16x4(pub(crate) [i16; 4]);

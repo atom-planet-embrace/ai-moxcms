@@ -29,8 +29,8 @@
 #![cfg(feature = "avx_luts")]
 use crate::conversions::interpolator::BarycentricWeight;
 use crate::math::{FusedMultiplyAdd, FusedMultiplyNegAdd};
-use std::arch::x86_64::*;
-use std::ops::{Add, Mul, Sub};
+use core::arch::x86_64::*;
+use core::ops::{Add, Mul, Sub};
 
 #[repr(align(16), C)]
 pub(crate) struct SseAlignedF32(pub(crate) [f32; 4]);

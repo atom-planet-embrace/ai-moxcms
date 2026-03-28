@@ -26,6 +26,9 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::vec;
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::katana::md_nx3::interpolate_out_function;
 use crate::conversions::katana::{KatanaFinalStage, KatanaInitialStage};
 use crate::conversions::md_lut::{MultidimensionalLut, tetra_3i_to_any_vec};
@@ -36,8 +39,8 @@ use crate::{
     CmsError, DataColorSpace, Layout, MalformedSize, PointeeSizeExpressible, TransformOptions,
 };
 use num_traits::AsPrimitive;
-use std::array::from_fn;
-use std::marker::PhantomData;
+use core::array::from_fn;
+use core::marker::PhantomData;
 
 #[derive(Default)]
 struct KatanaLutNx3<T> {

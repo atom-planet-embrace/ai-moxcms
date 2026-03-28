@@ -26,6 +26,9 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::vec;
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::katana::KatanaInitialStage;
 use crate::conversions::katana::md3x3::MultidimensionalDirection;
 use crate::mlaf::mlaf;
@@ -37,7 +40,7 @@ use crate::{
     Vector3f,
 };
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 pub(crate) fn execute_simple_curves3(dst: &mut [f32], curves: &[Vec<f32>; 3]) {
     let curve0 = &curves[0];

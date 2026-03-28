@@ -27,6 +27,9 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "lut")]
+use alloc::vec;
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::lut3x4::create_lut3_samples;
 use crate::err::try_vec;
 use crate::mlaf::mlaf;
@@ -35,7 +38,7 @@ use crate::{
     Rgb, TransformOptions,
 };
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 pub(crate) struct XyzToRgbStage<T: Clone> {
     pub(crate) r_gamma: Box<[T; 65536]>,

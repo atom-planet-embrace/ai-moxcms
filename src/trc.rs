@@ -26,13 +26,16 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::vec;
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::cicp::create_rec709_parametric;
 use crate::math::m_clamp;
 use crate::mlaf::{mlaf, neg_mlaf};
 use crate::transform::PointeeSizeExpressible;
 use crate::writer::FloatToFixedU8Fixed8;
 use crate::{CmsError, ColorProfile, DataColorSpace, Rgb, TransferCharacteristics};
-use num_traits::AsPrimitive;
+use num_traits::{AsPrimitive, Float};
 use pxfm::{dirty_powf, f_pow, f_powf};
 
 #[derive(Clone, Debug, PartialEq)]

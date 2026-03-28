@@ -27,14 +27,16 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "avx_luts")]
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::LutBarycentricReduction;
 use crate::conversions::avx::interpolator_q0_15::*;
 use crate::conversions::interpolator::BarycentricWeight;
 use crate::transform::PointeeSizeExpressible;
 use crate::{CmsError, DataColorSpace, InterpolationMethod, Layout, TransformExecutor};
 use num_traits::AsPrimitive;
-use std::arch::x86_64::*;
-use std::marker::PhantomData;
+use core::arch::x86_64::*;
+use core::marker::PhantomData;
 
 pub(crate) struct TransformLut3x3AvxQ0_15<
     T,

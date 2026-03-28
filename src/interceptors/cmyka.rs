@@ -29,7 +29,7 @@
 
 use crate::err::try_vec;
 use crate::{CmsError, Layout, TransformExecutor};
-use std::sync::Arc;
+use alloc::sync::Arc;
 
 pub(crate) struct FromCmykaInterceptor<T> {
     pub(crate) intercept: Arc<dyn TransformExecutor<T> + Send + Sync>,

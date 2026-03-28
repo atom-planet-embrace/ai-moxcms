@@ -26,6 +26,9 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::vec;
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::katana::{KatanaFinalStage, KatanaInitialStage};
 use crate::mlaf::mlaf;
 use crate::safe_math::SafeMul;
@@ -35,7 +38,7 @@ use crate::{
     Matrix3d, Matrix3f, PointeeSizeExpressible, TransformOptions, Vector3d, Vector3f,
 };
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 #[derive(Copy, Clone, Ord, PartialOrd, Eq, PartialEq, Debug)]
 pub(crate) enum MultidimensionalDirection {

@@ -40,6 +40,12 @@
     not(any(feature = "avx", feature = "sse", feature = "avx512", feature = "neon",)),
     forbid(unsafe_code)
 )]
+#![cfg_attr(not(test), no_std)]
+extern crate alloc;
+
+#[cfg(any(feature = "avx", feature = "sse", feature = "avx512", feature = "neon", feature = "std"))]
+extern crate std;
+
 mod chad;
 mod cicp;
 mod conversions;
@@ -86,7 +92,9 @@ pub use chad::{
 };
 pub use chromaticity::Chromaticity;
 pub use cicp::{CicpColorPrimaries, ColorPrimaries, MatrixCoefficients, TransferCharacteristics};
-pub use dat::ColorDateTime;
+pub use dat::{ColorDateTime, Now};
+#[cfg(feature = "std")]
+pub use dat::StdNow;
 pub use defaults::{
     HLG_LUT_TABLE, PQ_LUT_TABLE, WHITE_POINT_D50, WHITE_POINT_D60, WHITE_POINT_D65,
     WHITE_POINT_DCI_P3,

@@ -26,6 +26,7 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::vec::Vec;
 use crate::conversions::katana::KatanaIntermediateStage;
 use crate::{CmsError, Lab, Xyz};
 
@@ -41,7 +42,7 @@ impl KatanaIntermediateStage<f32> for KatanaStageLabToXyz {
             dst[1] = xyz.y;
             dst[2] = xyz.z;
         }
-        Ok(std::mem::take(input))
+        Ok(core::mem::take(input))
     }
 }
 
@@ -57,6 +58,6 @@ impl KatanaIntermediateStage<f32> for KatanaStageXyzToLab {
             dst[1] = lab.a;
             dst[2] = lab.b;
         }
-        Ok(std::mem::take(input))
+        Ok(core::mem::take(input))
     }
 }

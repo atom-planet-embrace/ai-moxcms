@@ -27,6 +27,8 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+use num_traits::Float;
+
 pub(crate) trait LutBarycentricReduction<T, U> {
     #![allow(unused)]
     fn reduce<const SRC_BP: usize, const BINS: usize>(v: T) -> U;

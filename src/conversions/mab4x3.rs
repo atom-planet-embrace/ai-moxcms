@@ -27,6 +27,8 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "lut")]
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::mab::{BCurves3, MCurves3};
 use crate::err::try_vec;
 use crate::safe_math::SafeMul;

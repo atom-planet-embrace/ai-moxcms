@@ -5,9 +5,9 @@
  * // license that can be found in the LICENSE file.
  */
 use crate::{Oklab, Rgb};
-use num_traits::Pow;
+use num_traits::{Float, Pow};
 use pxfm::{f_atan2f, f_cbrtf, f_hypotf, f_powf, f_sincosf};
-use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
+use core::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
 /// Represents *Oklch* colorspace
 #[repr(C)]

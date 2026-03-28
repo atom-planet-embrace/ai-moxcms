@@ -27,7 +27,7 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 use crate::CmsError;
-use std::ops::Add;
+use core::ops::Add;
 
 pub(crate) trait SafeAdd<T: Copy + Add<T, Output = T>> {
     fn safe_add(&self, other: T) -> Result<T, CmsError>;

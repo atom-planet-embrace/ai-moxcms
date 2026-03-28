@@ -27,6 +27,8 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "lut")]
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::LutBarycentricReduction;
 use crate::conversions::interpolator::{BarycentricWeight, MultidimensionalInterpolation};
 use crate::transform::PointeeSizeExpressible;
@@ -35,8 +37,8 @@ use crate::{
     TransformExecutor, TransformOptions,
 };
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
-use std::sync::Arc;
+use core::marker::PhantomData;
+use alloc::sync::Arc;
 
 pub(crate) struct TransformLut3x4<
     T,

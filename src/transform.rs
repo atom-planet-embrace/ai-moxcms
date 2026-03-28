@@ -26,13 +26,16 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::boxed::Box;
+use alloc::vec;
+use alloc::vec::Vec;
 use crate::conversions::*;
 use crate::err::CmsError;
 use crate::interceptors::{FromCmykaInterceptor, ToCmykaInterceptor};
 use crate::trc::GammaLutInterpolate;
 use crate::{ColorProfile, DataColorSpace, LutWarehouse, RenderingIntent, Vector3f, Xyzd};
 use num_traits::AsPrimitive;
-use std::sync::Arc;
+use alloc::sync::Arc;
 
 /// Transformation executor itself
 pub trait TransformExecutor<V: Copy + Default> {
@@ -823,7 +826,7 @@ impl ColorProfile {
                         use crate::conversions::{
                             TransformShaperFloatInOut, make_rgb_xyz_rgb_transform_float_in_out,
                         };
-                        use std::marker::PhantomData;
+                        use core::marker::PhantomData;
                         let p = TransformShaperFloatInOut {
                             linear_evaluator,
                             gamma_evaluator,
@@ -848,7 +851,7 @@ impl ColorProfile {
                     use crate::conversions::{
                         TransformShaperRgbFloat, make_rgb_xyz_rgb_transform_float,
                     };
-                    use std::marker::PhantomData;
+                    use core::marker::PhantomData;
                     let p = TransformShaperRgbFloat {
                         r_linear: lin_r,
                         g_linear: lin_g,

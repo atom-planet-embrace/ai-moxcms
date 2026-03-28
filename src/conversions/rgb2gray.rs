@@ -26,11 +26,12 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::boxed::Box;
 use crate::mlaf::mlaf;
 use crate::transform::PointeeSizeExpressible;
 use crate::{CmsError, Layout, TransformExecutor, Vector3f};
 use num_traits::AsPrimitive;
-use std::sync::Arc;
+use alloc::sync::Arc;
 
 #[derive(Clone)]
 pub(crate) struct ToneReproductionRgbToGray<T, const BUCKET: usize> {

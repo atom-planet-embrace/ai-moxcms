@@ -35,7 +35,7 @@ use crate::conversions::rgbxyz::{
 use crate::conversions::rgbxyz_fixed::make_rgb_xyz_q2_13_opt;
 use crate::{CmsError, Layout, TransformExecutor, TransformOptions};
 use num_traits::AsPrimitive;
-use std::sync::Arc;
+use alloc::sync::Arc;
 
 const FIXED_POINT_SCALE: i32 = 13; // Q2.13;
 

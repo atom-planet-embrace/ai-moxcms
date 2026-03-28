@@ -32,7 +32,7 @@ use crate::conversions::rgbxyz_fixed::TransformMatrixShaperFpOptVec;
 use crate::transform::PointeeSizeExpressible;
 use crate::{CmsError, Layout, TransformExecutor};
 use num_traits::AsPrimitive;
-use std::arch::x86_64::*;
+use core::arch::x86_64::*;
 
 #[inline(always)]
 pub(crate) unsafe fn _xmm_broadcast_epi32(f: &i32) -> __m128i {

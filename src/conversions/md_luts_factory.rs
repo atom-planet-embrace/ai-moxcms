@@ -26,6 +26,8 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::LutBarycentricReduction;
 use crate::conversions::katana::{
     CopyAlphaStage, InjectAlphaStage, Katana, KatanaInitialStage, KatanaIntermediateStage,
@@ -39,7 +41,7 @@ use crate::{
     PointeeSizeExpressible, TransformExecutor, TransformOptions,
 };
 use num_traits::AsPrimitive;
-use std::sync::Arc;
+use alloc::sync::Arc;
 
 pub(crate) fn do_any_to_any<
     T: Copy

@@ -26,11 +26,13 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 #[cfg(feature = "in_place")]
 use crate::InPlaceTransformExecutor;
 use crate::{CmsError, Layout, Matrix3, Matrix3f, TransformExecutor};
-use num_traits::AsPrimitive;
-use std::sync::Arc;
+use num_traits::{AsPrimitive, Float};
+use alloc::sync::Arc;
 
 pub(crate) struct TransformMatrixShaper<T: Clone, const BUCKET: usize> {
     pub(crate) r_linear: Box<[f32; BUCKET]>,

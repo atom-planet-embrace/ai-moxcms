@@ -6,9 +6,9 @@
  */
 use crate::Rgb;
 use crate::mlaf::mlaf;
-use num_traits::Pow;
+use num_traits::{Float, Pow};
 use pxfm::{f_cbrtf, f_powf};
-use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
+use core::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone, PartialOrd, PartialEq)]

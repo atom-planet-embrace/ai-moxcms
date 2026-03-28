@@ -27,11 +27,12 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "extended_range")]
+use alloc::boxed::Box;
 use crate::trc::ToneCurveEvaluator;
 use crate::{CmsError, Layout, Matrix3f, PointeeSizeExpressible, Rgb, TransformExecutor};
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
-use std::sync::Arc;
+use core::marker::PhantomData;
+use alloc::sync::Arc;
 
 pub(crate) struct TransformShaperRgbFloat<T: Clone, const BUCKET: usize> {
     pub(crate) r_linear: Box<[f32; BUCKET]>,

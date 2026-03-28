@@ -31,8 +31,8 @@
 use crate::conversions::interpolator::BarycentricWeight;
 use crate::conversions::neon::NeonAlignedF32;
 use crate::math::{FusedMultiplyAdd, FusedMultiplyNegAdd};
-use std::arch::aarch64::*;
-use std::ops::{Add, Mul, Sub};
+use core::arch::aarch64::*;
+use core::ops::{Add, Mul, Sub};
 
 pub(crate) struct TetrahedralNeon<const GRID_SIZE: usize> {}
 

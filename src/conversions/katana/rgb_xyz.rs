@@ -26,12 +26,15 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::vec;
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::katana::pcs_stages::KatanaMatrixStage;
 use crate::conversions::katana::{KatanaInitialStage, KatanaIntermediateStage};
 use crate::err::try_vec;
 use crate::{CmsError, ColorProfile, Layout, Matrix3f, PointeeSizeExpressible, TransformOptions};
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 struct KatanaRgbLinearizationStage<T: Clone, const LAYOUT: u8, const LINEAR_CAP: usize> {
     r_lin: Box<[f32; LINEAR_CAP]>,

@@ -27,6 +27,8 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "lut")]
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::LutBarycentricReduction;
 use crate::conversions::interpolator::*;
 use crate::conversions::lut_transforms::Lut4x3Factory;
@@ -36,8 +38,8 @@ use crate::{
     PointeeSizeExpressible, TransformExecutor, TransformOptions, Vector3f,
 };
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
-use std::sync::Arc;
+use core::marker::PhantomData;
+use alloc::sync::Arc;
 
 pub(crate) trait Vector3fCmykLerp {
     fn interpolate(a: Vector3f, b: Vector3f, t: f32, scale: f32) -> Vector3f;

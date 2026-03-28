@@ -26,8 +26,10 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::{CmsError, TransformExecutor};
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 /// W storage working data type
 /// I input/output data type
@@ -52,7 +54,7 @@ pub(crate) struct BlackholeIntermediateStage<W> {
 
 impl<W> KatanaIntermediateStage<W> for BlackholeIntermediateStage<W> {
     fn stage(&self, input: &mut Vec<W>) -> Result<Vec<W>, CmsError> {
-        Ok(std::mem::take(input))
+        Ok(core::mem::take(input))
     }
 }
 

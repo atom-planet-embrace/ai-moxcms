@@ -26,10 +26,11 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::boxed::Box;
 use crate::mlaf::{fmla, mlaf};
 use crate::transform::PointeeSizeExpressible;
 use crate::*;
-use num_traits::AsPrimitive;
+use num_traits::{AsPrimitive, Float};
 use pxfm::*;
 
 #[inline]

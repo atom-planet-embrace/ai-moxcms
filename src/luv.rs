@@ -55,9 +55,9 @@ pub struct LCh {
 
 use crate::mlaf::mlaf;
 use crate::{Chromaticity, Lab, Xyz};
-use num_traits::Pow;
+use num_traits::{Float, Pow};
 use pxfm::{f_atan2f, f_cbrtf, f_hypotf, f_powf, f_sincosf};
-use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
+use core::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
 pub(crate) const LUV_WHITE_U_PRIME: f32 = 4.0f32 * Chromaticity::D50.to_xyz().y
     / (Chromaticity::D50.to_xyz().x
@@ -233,8 +233,10 @@ impl PartialEq<LCh> for LCh {
         } else if self.c == 0.0 {
             true
         } else {
-            use std::f32::consts::TAU;
-            self.h.rem_euclid(TAU) == other.h.rem_euclid(TAU)
+            use core::f32::consts::TAU;
+            let rem_self = self.h - (self.h / TAU).floor() * TAU;
+            let rem_other = other.h - (other.h / TAU).floor() * TAU;
+            rem_self == rem_other
         }
     }
 }

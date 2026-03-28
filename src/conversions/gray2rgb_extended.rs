@@ -27,12 +27,13 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "extended_range")]
+use alloc::boxed::Box;
 use crate::transform::PointeeSizeExpressible;
 use crate::trc::ToneCurveEvaluator;
 use crate::*;
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
-use std::sync::Arc;
+use core::marker::PhantomData;
+use alloc::sync::Arc;
 
 struct TransformGrayOneToOneExecutor<T, const SRC_LAYOUT: u8, const DEST_LAYOUT: u8> {
     linear_eval: Box<dyn ToneCurveEvaluator + Send + Sync>,

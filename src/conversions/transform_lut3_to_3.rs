@@ -28,6 +28,8 @@
  */
 #![cfg(feature = "lut")]
 #![allow(dead_code)]
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::LutBarycentricReduction;
 use crate::conversions::interpolator::{BarycentricWeight, MultidimensionalInterpolation};
 use crate::conversions::lut_transforms::Lut3x3Factory;
@@ -37,8 +39,8 @@ use crate::{
     TransformExecutor, TransformOptions,
 };
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
-use std::sync::Arc;
+use core::marker::PhantomData;
+use alloc::sync::Arc;
 
 pub(crate) struct TransformLut3x3<
     T,

@@ -32,7 +32,7 @@ use crate::conversions::rgbxyz_fixed::TransformMatrixShaperFpOptVec;
 use crate::transform::PointeeSizeExpressible;
 use crate::{CmsError, Layout, TransformExecutor};
 use num_traits::AsPrimitive;
-use std::arch::aarch64::*;
+use core::arch::aarch64::*;
 
 pub(crate) struct TransformShaperQ1_30NeonOpt<T: Copy, const SRC_LAYOUT: u8, const DST_LAYOUT: u8> {
     pub(crate) profile: TransformMatrixShaperFpOptVec<i32, i32, T>,

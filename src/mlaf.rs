@@ -27,7 +27,7 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 use num_traits::MulAdd;
-use std::ops::{Add, Mul, Neg};
+use core::ops::{Add, Mul, Neg};
 
 #[cfg(any(
     all(

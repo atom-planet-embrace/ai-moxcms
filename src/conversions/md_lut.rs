@@ -31,9 +31,9 @@ use crate::mlaf::{mlaf, neg_mlaf};
 use crate::nd_array::{ArrayFetch, lerp};
 use crate::{Vector3f, Vector3i};
 use num_traits::MulAdd;
-use std::array::from_fn;
-use std::marker::PhantomData;
-use std::ops::{Add, Mul, Neg, Sub};
+use core::array::from_fn;
+use core::marker::PhantomData;
+use core::ops::{Add, Mul, Neg, Sub};
 
 pub(crate) struct MultidimensionalLut {
     pub(crate) grid_strides: [u32; 16],

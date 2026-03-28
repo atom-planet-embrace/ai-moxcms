@@ -29,7 +29,7 @@
 use crate::conversions::katana::KatanaPostFinalizationStage;
 use crate::{CmsError, DataColorSpace, Layout, PointeeSizeExpressible};
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 pub(crate) struct InjectAlphaStage<I> {
     pub(crate) dst_layout: Layout,

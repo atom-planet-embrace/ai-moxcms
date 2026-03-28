@@ -26,11 +26,13 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::Layout;
 use crate::matrix::Matrix3;
 use crate::{CmsError, TransformExecutor};
 use num_traits::AsPrimitive;
-use std::sync::Arc;
+use alloc::sync::Arc;
 
 /// Fixed point conversion Q2.13
 #[allow(dead_code)]

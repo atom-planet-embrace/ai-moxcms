@@ -26,10 +26,28 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::vec::Vec;
 use crate::CmsError;
 use crate::writer::write_u16_be;
-#[cfg(not(target_arch = "wasm32"))]
-use std::time::{SystemTime, UNIX_EPOCH};
+use core::time::Duration;
+
+/// Trait for providing current time. Implement this to supply a time source
+/// in `no_std` environments.
+pub trait Now {
+    fn now() -> Duration;
+}
+
+#[cfg(feature = "std")]
+pub struct StdNow;
+
+#[cfg(feature = "std")]
+impl Now for StdNow {
+    fn now() -> Duration {
+        std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .unwrap_or(Duration::new(0, 0))
+    }
+}
 
 #[repr(C)]
 #[derive(Debug, Clone, Copy, Ord, PartialOrd, Eq, PartialEq)]
@@ -72,7 +90,21 @@ fn days_in_month(year: i32, month: i32) -> i32 {
 
 impl Default for ColorDateTime {
     fn default() -> Self {
-        Self::now()
+        #[cfg(feature = "std")]
+        {
+            Self::now::<StdNow>()
+        }
+        #[cfg(not(feature = "std"))]
+        {
+            Self {
+                year: 1970,
+                month: 1,
+                day_of_the_month: 1,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+            }
+        }
     }
 }
 
@@ -99,16 +131,8 @@ impl ColorDateTime {
     }
 
     /// Creates a new `ColorDateTime` from the current system time (UTC)
-    pub fn now() -> Self {
-        #[cfg(not(target_arch = "wasm32"))]
-        let now = match SystemTime::now().duration_since(UNIX_EPOCH) {
-            Ok(v) => v,
-            Err(_) => return Self::default(),
-        };
-        #[cfg(target_arch = "wasm32")]
-        use std::time::Duration;
-        #[cfg(target_arch = "wasm32")]
-        let now = Duration::new(365 * 60 * 60 * 24 * 30, 0);
+    pub fn now<N: Now>() -> Self {
+        let now = N::now();
         let mut days = (now.as_secs() / 86_400) as i64;
         let secs_of_day = (now.as_secs() % 86_400) as i64;
 
@@ -133,7 +157,7 @@ impl ColorDateTime {
                 break;
             }
         }
-        let day = days + 1; // days from zero based to 1 base
+        let day = days + 1;
 
         let hour = secs_of_day / 3600;
         let min = (secs_of_day % 3600) / 60;

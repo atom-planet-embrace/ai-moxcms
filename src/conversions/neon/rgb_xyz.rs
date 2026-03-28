@@ -32,7 +32,7 @@ use crate::conversions::rgbxyz::TransformMatrixShaperV;
 use crate::transform::PointeeSizeExpressible;
 use crate::{CmsError, Layout, TransformExecutor};
 use num_traits::AsPrimitive;
-use std::arch::aarch64::*;
+use core::arch::aarch64::*;
 
 pub(crate) struct TransformShaperRgbNeon<
     T: Clone + PointeeSizeExpressible + Copy + Default + 'static,

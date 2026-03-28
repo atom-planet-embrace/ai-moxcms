@@ -27,6 +27,9 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "lut")]
+use alloc::vec;
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::lut3x3::create_lut3x3;
 #[cfg(feature = "any_to_any")]
 use crate::conversions::lut3x3::{katana_input_stage_lut_3x3, katana_output_stage_lut_3x3};
@@ -40,7 +43,7 @@ use crate::{
     ProfileVersion, TransformExecutor, TransformOptions,
 };
 use num_traits::AsPrimitive;
-use std::sync::Arc;
+use alloc::sync::Arc;
 
 pub(crate) struct MatrixStage {
     pub(crate) matrices: Vec<Matrix3f>,

@@ -183,7 +183,7 @@ impl Lab {
             let lch = LCh::from_lab(new_lab);
 
             let slope = new_lab.b / new_lab.a;
-            let h = lch.h * (180.0 / std::f32::consts::PI);
+            let h = lch.h * (180.0 / core::f32::consts::PI);
 
             // There are 4 zones
             if (0. ..45.).contains(&h) || (315. ..=360.).contains(&h) {

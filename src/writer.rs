@@ -26,6 +26,11 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::string::ToString;
+use alloc::vec;
+use alloc::string::String;
+use alloc::vec::Vec;
+use num_traits::Float;
 use crate::profile::{LutDataType, ProfileHeader};
 use crate::tag::{TAG_SIZE, Tag, TagTypeDefinition};
 use crate::trc::ToneReprCurve;
@@ -874,7 +879,7 @@ impl ColorProfile {
                 self.version_internal
             },
             data_color_space: self.color_space,
-            creation_date_time: ColorDateTime::now(),
+            creation_date_time: ColorDateTime::default(),
             signature: ProfileSignature::Acsp,
             platform: 0u32,
             flags: 0u32,

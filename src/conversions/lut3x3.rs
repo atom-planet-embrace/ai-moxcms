@@ -27,6 +27,8 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "lut")]
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 #[cfg(feature = "any_to_any")]
 use crate::conversions::katana::{KatanaFinalStage, KatanaInitialStage};
 use crate::err::{MalformedSize, try_vec};
@@ -56,7 +58,7 @@ struct KatanaLut3x3<T: Copy + Default> {
     gamma: [Vec<f32>; 3],
     interpolation_method: InterpolationMethod,
     pcs: DataColorSpace,
-    _phantom: std::marker::PhantomData<T>,
+    _phantom: core::marker::PhantomData<T>,
     bit_depth: usize,
 }
 
@@ -163,7 +165,7 @@ where
         clut: lut.clut,
         grid_size: lut.grid_size,
         pcs: lut.pcs,
-        _phantom: std::marker::PhantomData,
+        _phantom: core::marker::PhantomData,
         bit_depth,
     };
 
@@ -191,7 +193,7 @@ where
         clut: lut.clut,
         grid_size: lut.grid_size,
         pcs: lut.pcs,
-        _phantom: std::marker::PhantomData,
+        _phantom: core::marker::PhantomData,
         bit_depth,
     };
 

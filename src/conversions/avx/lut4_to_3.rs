@@ -27,6 +27,8 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "avx_luts")]
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::LutBarycentricReduction;
 use crate::conversions::avx::assert_barycentric_lut_size_precondition;
 use crate::conversions::avx::interpolator::*;
@@ -40,9 +42,9 @@ use crate::{
     TransformExecutor, TransformOptions,
 };
 use num_traits::AsPrimitive;
-use std::arch::x86_64::*;
-use std::marker::PhantomData;
-use std::sync::Arc;
+use core::arch::x86_64::*;
+use core::marker::PhantomData;
+use alloc::sync::Arc;
 
 struct TransformLut4To3Avx<
     T,

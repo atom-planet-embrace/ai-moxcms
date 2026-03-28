@@ -27,6 +27,8 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #![cfg(feature = "neon_luts")]
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::LutBarycentricReduction;
 use crate::conversions::interpolator::BarycentricWeight;
 use crate::conversions::lut_transforms::Lut3x3Factory;
@@ -40,9 +42,9 @@ use crate::{
     TransformExecutor, TransformOptions,
 };
 use num_traits::AsPrimitive;
-use std::arch::aarch64::*;
-use std::marker::PhantomData;
-use std::sync::Arc;
+use core::arch::aarch64::*;
+use core::marker::PhantomData;
+use alloc::sync::Arc;
 
 struct TransformLut3x3Neon<
     T,

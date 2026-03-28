@@ -34,7 +34,7 @@ use crate::conversions::avx512::rgb_xyz_q2_13_opt::{
 use crate::transform::PointeeSizeExpressible;
 use crate::{CmsError, Layout, TransformExecutor};
 use num_traits::AsPrimitive;
-use std::arch::x86_64::*;
+use core::arch::x86_64::*;
 
 pub(crate) struct TransformShaperRgbOptAvx512<
     T: Clone + Copy + 'static + PointeeSizeExpressible + Default,

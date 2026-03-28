@@ -26,6 +26,9 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::vec;
+use alloc::boxed::Box;
+use alloc::vec::Vec;
 use crate::conversions::katana::KatanaInitialStage;
 use crate::conversions::katana::md3x3::MultidimensionalDirection;
 use crate::conversions::katana::md4x3::{execute_matrix_stage3, execute_simple_curves3};
@@ -42,7 +45,7 @@ use crate::{
     PointeeSizeExpressible, TransformOptions, Vector3d, Vector3f,
 };
 use num_traits::AsPrimitive;
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 struct MultidimensionalNx3<
     T: Copy + Default + AsPrimitive<f32> + PointeeSizeExpressible + Send + Sync,

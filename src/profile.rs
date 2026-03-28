@@ -26,6 +26,8 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::string::String;
+use alloc::vec::Vec;
 use crate::chad::BRADFORD_D;
 use crate::cicp::{
     CicpColorPrimaries, ColorPrimaries, MatrixCoefficients, TransferCharacteristics,
@@ -38,7 +40,6 @@ use crate::safe_math::{SafeAdd, SafeMul};
 use crate::tag::{TAG_SIZE, Tag};
 use crate::trc::ToneReprCurve;
 use crate::{Chromaticity, Layout, Matrix3d, Vector3d, XyY, Xyzd, adapt_to_d50_d};
-use std::io::Read;
 
 const MAX_PROFILE_SIZE: usize = 1024 * 1024 * 10; // 10 MB max, for Fogra39 etc
 
@@ -687,11 +688,12 @@ impl ProfileHeader {
         if slice.len() < size_of::<ProfileHeader>() {
             return Err(CmsError::InvalidProfile);
         }
-        let mut cursor = std::io::Cursor::new(slice);
+        let header_size = size_of::<ProfileHeader>();
+        if slice.len() < header_size {
+            return Err(CmsError::InvalidProfile);
+        }
         let mut buffer = [0u8; size_of::<ProfileHeader>()];
-        cursor
-            .read_exact(&mut buffer)
-            .map_err(|_| CmsError::InvalidProfile)?;
+        buffer.copy_from_slice(&slice[..header_size]);
 
         let header = Self {
             size: u32::from_be_bytes(buffer[0..4].try_into().unwrap()),

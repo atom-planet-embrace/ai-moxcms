@@ -29,8 +29,8 @@
 #![cfg(feature = "neon_luts")]
 use crate::conversions::interpolator::BarycentricWeight;
 use crate::math::FusedMultiplyAdd;
-use std::arch::aarch64::*;
-use std::ops::{Add, Mul, Sub};
+use core::arch::aarch64::*;
+use core::ops::{Add, Mul, Sub};
 
 #[repr(align(8), C)]
 pub(crate) struct NeonAlignedI16x4(pub(crate) [i16; 4]);

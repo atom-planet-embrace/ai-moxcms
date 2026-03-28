@@ -28,11 +28,12 @@
  */
 #![cfg(feature = "lut")]
 #![allow(dead_code)]
+use alloc::boxed::Box;
 use crate::conversions::lut_transforms::LUT_SAMPLING;
 use crate::math::{FusedMultiplyAdd, FusedMultiplyNegAdd};
 use crate::mlaf::fmla;
 use crate::{Vector3f, Vector4f};
-use std::ops::{Add, Mul, Sub};
+use core::ops::{Add, Mul, Sub};
 
 #[cfg(feature = "options")]
 pub(crate) struct Tetrahedral<const GRID_SIZE: usize> {}

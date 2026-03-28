@@ -32,7 +32,7 @@ use crate::conversions::rgbxyz::TransformMatrixShaperOptimizedV;
 use crate::transform::PointeeSizeExpressible;
 use crate::{CmsError, Layout, TransformExecutor};
 use num_traits::AsPrimitive;
-use std::arch::x86_64::*;
+use core::arch::x86_64::*;
 
 pub(crate) struct TransformShaperRgbOptAvx<
     T: Clone + Copy + 'static + PointeeSizeExpressible + Default,

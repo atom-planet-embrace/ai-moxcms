@@ -26,6 +26,7 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
+use alloc::vec;
 use crate::gamma::{
     bt1361_to_linear, hlg_to_linear, iec61966_to_linear, log100_sqrt10_to_linear, log100_to_linear,
     pq_to_linear, smpte240_to_linear, smpte428_to_linear,
@@ -35,7 +36,7 @@ use crate::{
     err::CmsError,
     trc::{ToneReprCurve, build_trc_table, curve_from_gamma},
 };
-use std::convert::TryFrom;
+use core::convert::TryFrom;
 
 /// See [Rec. ITU-T H.273 (12/2016)](https://www.itu.int/rec/T-REC-H.273-201612-I/en) Table 2
 /// Values 0, 3, 13–21, 23–255 are all reserved so all map to the same variant
