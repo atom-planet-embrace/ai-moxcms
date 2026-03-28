@@ -41,7 +41,9 @@ use crate::{
     BarycentricWeightScale, CmsError, DataColorSpace, InterpolationMethod, Layout,
     TransformExecutor, TransformOptions,
 };
-use num_traits::{AsPrimitive, Float};
+use num_traits::AsPrimitive;
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
 use core::arch::aarch64::*;
 use core::marker::PhantomData;
 use alloc::sync::Arc;

@@ -28,11 +28,14 @@
  */
 #[cfg(feature = "in_place")]
 use alloc::vec;
-use alloc::boxed::Box;
+#[cfg(feature = "in_place")]
 use crate::InPlaceTransformExecutor;
+use alloc::boxed::Box;
 use crate::transform::PointeeSizeExpressible;
 use crate::{CmsError, Layout, TransformExecutor};
-use num_traits::{AsPrimitive, Float};
+use num_traits::AsPrimitive;
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
 use alloc::sync::Arc;
 
 #[derive(Clone)]

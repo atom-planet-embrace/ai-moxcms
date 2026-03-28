@@ -55,7 +55,9 @@ pub struct LCh {
 
 use crate::mlaf::mlaf;
 use crate::{Chromaticity, Lab, Xyz};
-use num_traits::{Float, Pow};
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
+use num_traits::Pow;
 use pxfm::{f_atan2f, f_cbrtf, f_hypotf, f_powf, f_sincosf};
 use core::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 

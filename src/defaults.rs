@@ -26,7 +26,6 @@
  * // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-use alloc::string::String;
 use alloc::string::ToString;
 use alloc::vec;
 use crate::chad::BRADFORD_D;

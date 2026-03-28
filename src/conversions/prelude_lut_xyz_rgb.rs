@@ -37,7 +37,9 @@ use crate::{
     CmsError, ColorProfile, GammaLutInterpolate, InPlaceStage, Matrix3f, PointeeSizeExpressible,
     Rgb, TransformOptions,
 };
-use num_traits::{AsPrimitive, Float};
+use num_traits::AsPrimitive;
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
 use core::marker::PhantomData;
 
 pub(crate) struct XyzToRgbStage<T: Clone> {

@@ -28,7 +28,6 @@
  */
 #![cfg(feature = "lut")]
 use alloc::vec;
-use alloc::boxed::Box;
 use alloc::vec::Vec;
 use crate::conversions::lut3x3::create_lut3x3;
 #[cfg(feature = "any_to_any")]

@@ -6,7 +6,9 @@
  */
 use crate::Rgb;
 use crate::mlaf::mlaf;
-use num_traits::{Float, Pow};
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
+use num_traits::Pow;
 use pxfm::{f_cbrtf, f_powf};
 use core::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 

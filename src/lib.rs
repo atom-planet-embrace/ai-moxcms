@@ -47,6 +47,7 @@ extern crate alloc;
 extern crate std;
 
 /// Runtime CPU feature detection when `std` is available, compile-time fallback otherwise.
+#[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
 macro_rules! is_x86_feature {
     ($feature:tt) => {{
         #[cfg(feature = "std")]
@@ -57,6 +58,7 @@ macro_rules! is_x86_feature {
 }
 
 /// Runtime CPU feature detection when `std` is available, compile-time fallback otherwise.
+#[cfg(target_arch = "aarch64")]
 macro_rules! is_aarch64_feature {
     ($feature:tt) => {{
         #[cfg(feature = "std")]
@@ -66,7 +68,9 @@ macro_rules! is_aarch64_feature {
     }};
 }
 
+#[cfg(target_arch = "aarch64")]
 pub(crate) use is_aarch64_feature;
+#[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
 pub(crate) use is_x86_feature;
 
 mod chad;

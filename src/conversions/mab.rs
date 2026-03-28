@@ -31,6 +31,7 @@ use alloc::boxed::Box;
 use alloc::vec::Vec;
 use crate::mlaf::mlaf;
 use crate::safe_math::SafeMul;
+#[cfg(not(any(test, feature = "std")))]
 use num_traits::Float;
 use crate::{
     CmsError, Cube, DataColorSpace, InPlaceStage, InterpolationMethod, LutMultidimensionalType,

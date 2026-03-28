@@ -27,6 +27,7 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#[cfg(not(any(test, feature = "std")))]
 use num_traits::Float;
 
 #[allow(unused)]

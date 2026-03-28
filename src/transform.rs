@@ -27,8 +27,6 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 use alloc::boxed::Box;
-use alloc::vec;
-use alloc::vec::Vec;
 use crate::conversions::*;
 use crate::err::CmsError;
 use crate::interceptors::{FromCmykaInterceptor, ToCmykaInterceptor};

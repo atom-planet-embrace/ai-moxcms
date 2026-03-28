@@ -29,7 +29,9 @@
 use crate::Xyz;
 use crate::jzczhz::Jzczhz;
 use crate::mlaf::mlaf;
-use num_traits::{Float, Pow};
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
+use num_traits::Pow;
 use pxfm::{dirty_powf, f_cbrtf, f_powf};
 use core::ops::{
     Add, AddAssign, Div, DivAssign, Index, IndexMut, Mul, MulAssign, Neg, Sub, SubAssign,

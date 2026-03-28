@@ -30,6 +30,7 @@ use alloc::string::ToString;
 use alloc::vec;
 use alloc::string::String;
 use alloc::vec::Vec;
+#[cfg(not(any(test, feature = "std")))]
 use num_traits::Float;
 use crate::profile::{LutDataType, ProfileHeader};
 use crate::tag::{TAG_SIZE, Tag, TagTypeDefinition};

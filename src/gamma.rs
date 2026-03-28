@@ -30,7 +30,9 @@ use alloc::boxed::Box;
 use crate::mlaf::{fmla, mlaf};
 use crate::transform::PointeeSizeExpressible;
 use crate::*;
-use num_traits::{AsPrimitive, Float};
+use num_traits::AsPrimitive;
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
 use pxfm::*;
 
 #[inline]

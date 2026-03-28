@@ -31,7 +31,9 @@ use alloc::vec::Vec;
 #[cfg(feature = "in_place")]
 use crate::InPlaceTransformExecutor;
 use crate::{CmsError, Layout, Matrix3, Matrix3f, TransformExecutor};
-use num_traits::{AsPrimitive, Float};
+use num_traits::AsPrimitive;
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
 use alloc::sync::Arc;
 
 pub(crate) struct TransformMatrixShaper<T: Clone, const BUCKET: usize> {

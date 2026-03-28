@@ -35,7 +35,9 @@ use crate::mlaf::{mlaf, neg_mlaf};
 use crate::transform::PointeeSizeExpressible;
 use crate::writer::FloatToFixedU8Fixed8;
 use crate::{CmsError, ColorProfile, DataColorSpace, Rgb, TransferCharacteristics};
-use num_traits::{AsPrimitive, Float};
+use num_traits::AsPrimitive;
+#[cfg(not(any(test, feature = "std")))]
+use num_traits::Float;
 use pxfm::{dirty_powf, f_pow, f_powf};
 
 #[derive(Clone, Debug, PartialEq)]

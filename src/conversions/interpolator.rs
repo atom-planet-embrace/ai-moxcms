@@ -34,6 +34,7 @@ use crate::math::{FusedMultiplyAdd, FusedMultiplyNegAdd};
 use crate::mlaf::fmla;
 use crate::{Vector3f, Vector4f};
 use core::ops::{Add, Mul, Sub};
+#[cfg(not(any(test, feature = "std")))]
 use num_traits::Float;
 
 #[cfg(feature = "options")]

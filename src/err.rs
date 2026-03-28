@@ -27,7 +27,6 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 use alloc::string::String;
-use alloc::vec::Vec;
 use crate::RenderingIntent;
 use core::error::Error;
 use core::fmt::Display;

@@ -31,6 +31,7 @@ use crate::mlaf::{mlaf, neg_mlaf};
 use crate::safe_math::{SafeAdd, SafeMul};
 use crate::{CmsError, MalformedSize, Vector3f, Vector4f};
 use core::ops::{Add, Mul, Sub};
+#[cfg(not(any(test, feature = "std")))]
 use num_traits::Float;
 
 impl FusedMultiplyAdd<f32> for f32 {
