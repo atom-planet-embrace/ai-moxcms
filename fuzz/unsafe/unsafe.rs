@@ -1,7 +1,7 @@
 #![no_main]
 
 use libfuzzer_sys::fuzz_target;
-use moxcms::{ColorProfile, InterpolationMethod, Layout, TransformOptions};
+use ai_moxcms::{ColorProfile, InterpolationMethod, Layout, TransformOptions};
 
 fuzz_target!(|data: (u8, u8, u16, u8, u8, u8, u8, f32)| {
     let src_layout = if data.3 % 2 == 0 {

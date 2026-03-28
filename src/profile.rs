@@ -608,7 +608,7 @@ impl TryFrom<u32> for RenderingIntent {
         // values 0-3. Non-conforming profiles (e.g. old Linotype "Lino"
         // v2.1 profiles with byte-swapped values) may have invalid values.
         // Default to Perceptual rather than rejecting the entire profile,
-        // since this field is advisory — moxcms uses TransformOptions for
+        // since this field is advisory — ai-moxcms uses TransformOptions for
         // actual LUT selection.
         match value {
             0 => Ok(RenderingIntent::Perceptual),

@@ -1,7 +1,7 @@
 #![no_main]
 
 use libfuzzer_sys::fuzz_target;
-use moxcms::{ColorProfile, Layout, TransformOptions};
+use ai_moxcms::{ColorProfile, Layout, TransformOptions};
 
 fuzz_target!(|data: &[u8]| {
     // Never panic expected

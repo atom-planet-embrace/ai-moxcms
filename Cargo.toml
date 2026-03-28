@@ -1,18 +1,18 @@
 workspace = { members = ["app", "fuzz"] }
 
 [package]
-name = "moxcms"
+name = "ai-moxcms"
 version = "0.8.1"
 edition = "2024"
-description = "Simple Color Management in Rust"
+description = "A no_std fork of moxcms"
 readme = "./README.md"
 keywords = ["icc", "cms", "color", "cmyk"]
 license = "BSD-3-Clause OR Apache-2.0"
 authors = ["Radzivon Bartoshyk"]
-documentation = "https://github.com/awxkee/moxcms"
+documentation = "https://github.com/atom-planet-embrace/ai-moxcms"
 categories = ["multimedia::images"]
-homepage = "https://github.com/awxkee/moxcms"
-repository = "https://github.com/awxkee/moxcms.git"
+homepage = "https://github.com/atom-planet-embrace/ai-moxcms"
+repository = "https://github.com/atom-planet-embrace/ai-moxcms.git"
 exclude = ["*.jpg", "../../assets/*", "*.png", "*.icc", "./assets/*"]
 rust-version = "1.85.0"
 

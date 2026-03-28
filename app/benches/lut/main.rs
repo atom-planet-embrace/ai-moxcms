@@ -6,7 +6,7 @@
  */
 use criterion::{Criterion, criterion_group, criterion_main};
 use lcms2::{Intent, PixelFormat, Profile, Transform};
-use moxcms::{BarycentricWeightScale, ColorProfile, InterpolationMethod, Layout, TransformOptions};
+use ai_moxcms::{BarycentricWeightScale, ColorProfile, InterpolationMethod, Layout, TransformOptions};
 use std::fs;
 use std::fs::File;
 use std::io::BufReader;

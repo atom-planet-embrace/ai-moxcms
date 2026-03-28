@@ -32,8 +32,8 @@ mod encode_gray_lut;
 use crate::encode_gray_lut::encode_gray_lut;
 use image::DynamicImage;
 use jpeg_encoder::{ColorType, Encoder};
-use moxcms::ProfileClass::ColorSpace;
-use moxcms::{
+use ai_moxcms::ProfileClass::ColorSpace;
+use ai_moxcms::{
     BarycentricWeightScale, Chromaticity, CicpColorPrimaries, CicpProfile, ColorDateTime,
     ColorPrimaries, ColorProfile, Cube, DataColorSpace, InterpolationMethod, Layout,
     LutMultidimensionalType, LutStore, LutWarehouse, Matrix3d, Matrix3f, MatrixCoefficients,
@@ -233,7 +233,7 @@ fn to_lut_v4(lut: &Option<LutWarehouse>, to_pcs: bool) -> Option<LutWarehouse> {
                 }
             }
 
-            let data_type = moxcms::LutMultidimensionalType {
+            let data_type = ai_moxcms::LutMultidimensionalType {
                 num_input_channels: lut.num_input_channels,
                 num_output_channels: lut.num_output_channels,
                 grid_points,
@@ -344,13 +344,13 @@ fn main() {
     let img = DynamicImage::from_decoder(decoder).unwrap();
     let mut rgb_f32 = img.to_rgb8();
 
-    let srgb = moxcms::ColorProfile::new_srgb();
+    let srgb = ai_moxcms::ColorProfile::new_srgb();
 
     let transform = srgb
         .create_transform_8bit(
-            moxcms::Layout::Rgb,
+            ai_moxcms::Layout::Rgb,
             &fogra_profile,
-            moxcms::Layout::Rgba,
+            ai_moxcms::Layout::Rgba,
             TransformOptions {
                 prefer_fixed_point: false,
                 ..Default::default()
@@ -363,9 +363,9 @@ fn main() {
 
     let inverse_transform = fogra_profile
         .create_transform_8bit(
-            moxcms::Layout::Rgba,
+            ai_moxcms::Layout::Rgba,
             &srgb,
-            moxcms::Layout::Rgb,
+            ai_moxcms::Layout::Rgb,
             TransformOptions {
                 prefer_fixed_point: false,
                 rendering_intent: RenderingIntent::RelativeColorimetric,

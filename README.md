@@ -1,3 +1,5 @@
+This is a fork of the [moxcms](https://crates.io/crates/moxcms) crate. The git repository is located at https://github.com/awxkee/moxcms.
+
 # Rust ICC Management
 
 Fast and safe conversion between ICC profiles; in pure Rust.

@@ -315,7 +315,7 @@ impl ColorProfile {
             }
             Ok(LutStore::Store8(clut))
         } else {
-            unreachable!("This should never happen, report to https://github.com/awxkee/moxcms")
+            unreachable!("This should never happen, report to https://github.com/atom-planet-embrace/ai-moxcms")
         }
     }
 
