@@ -88,26 +88,6 @@ fn days_in_month(year: i32, month: i32) -> i32 {
     }
 }
 
-impl Default for ColorDateTime {
-    fn default() -> Self {
-        #[cfg(feature = "std")]
-        {
-            Self::now::<StdNow>()
-        }
-        #[cfg(not(feature = "std"))]
-        {
-            Self {
-                year: 1970,
-                month: 1,
-                day_of_the_month: 1,
-                hours: 0,
-                minutes: 0,
-                seconds: 0,
-            }
-        }
-    }
-}
-
 impl ColorDateTime {
     /// Parses slice for date time
     pub fn new_from_slice(slice: &[u8]) -> Result<ColorDateTime, CmsError> {

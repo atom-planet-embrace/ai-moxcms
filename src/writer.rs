@@ -649,7 +649,7 @@ impl ColorProfile {
     }
 
     /// Encodes profile
-    pub fn encode(&self) -> Result<Vec<u8>, CmsError> {
+    pub fn encode<N: crate::Now>(&self) -> Result<Vec<u8>, CmsError> {
         let mut entries = Vec::new();
         let tags_count = self.writable_tags_count();
         let mut tags = Vec::with_capacity(TAG_SIZE * tags_count);
@@ -880,7 +880,7 @@ impl ColorProfile {
                 self.version_internal
             },
             data_color_space: self.color_space,
-            creation_date_time: ColorDateTime::default(),
+            creation_date_time: ColorDateTime::now::<N>(),
             signature: ProfileSignature::Acsp,
             platform: 0u32,
             flags: 0u32,

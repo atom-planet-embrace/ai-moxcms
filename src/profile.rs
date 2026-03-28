@@ -659,7 +659,7 @@ pub(crate) struct ProfileHeader {
 
 impl ProfileHeader {
     #[allow(dead_code)]
-    pub(crate) fn new(size: u32) -> Self {
+    pub(crate) fn new<N: crate::Now>(size: u32) -> Self {
         Self {
             size,
             cmm_type: 0,
@@ -667,7 +667,7 @@ impl ProfileHeader {
             profile_class: ProfileClass::DisplayDevice,
             data_color_space: DataColorSpace::Rgb,
             pcs: DataColorSpace::Xyz,
-            creation_date_time: ColorDateTime::default(),
+            creation_date_time: ColorDateTime::now::<N>(),
             signature: ProfileSignature::Acsp,
             platform: 0,
             flags: 0x00000000,
@@ -909,7 +909,7 @@ pub struct Measurement {
 
 /// ICC Profile representation
 #[repr(C)]
-#[derive(Debug, Clone, Default)]
+#[derive(Debug, Clone)]
 pub struct ColorProfile {
     pub pcs: DataColorSpace,
     pub color_space: DataColorSpace,
@@ -1005,7 +1005,35 @@ impl ColorProfile {
             white_point: header.illuminant.to_xyzd(),
             version_internal: header.version,
             creation_date_time: header.creation_date_time,
-            ..Default::default()
+            red_colorant: Xyzd::default(),
+            green_colorant: Xyzd::default(),
+            blue_colorant: Xyzd::default(),
+            black_point: None,
+            media_white_point: None,
+            luminance: None,
+            measurement: None,
+            red_trc: None,
+            green_trc: None,
+            blue_trc: None,
+            gray_trc: None,
+            cicp: None,
+            chromatic_adaptation: None,
+            lut_a_to_b_perceptual: None,
+            lut_a_to_b_colorimetric: None,
+            lut_a_to_b_saturation: None,
+            lut_b_to_a_perceptual: None,
+            lut_b_to_a_colorimetric: None,
+            lut_b_to_a_saturation: None,
+            gamut: None,
+            copyright: None,
+            description: None,
+            device_manufacturer: None,
+            device_model: None,
+            char_target: None,
+            viewing_conditions: None,
+            viewing_conditions_description: None,
+            technology: None,
+            calibration_date: None,
         };
         let color_space = profile.color_space;
         for tag in tags_slice.chunks_exact(TAG_SIZE) {
