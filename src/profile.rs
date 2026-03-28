@@ -1492,7 +1492,7 @@ mod tests {
         }
 
         // Also verify with sRGB
-        let srgb = ColorProfile::new_srgb();
+        let srgb = ColorProfile::new_srgb::<crate::StdNow>();
         let rgb_to_xyz = srgb.rgb_to_xyz_matrix();
         let colorants = srgb.colorant_matrix();
 
@@ -1616,7 +1616,7 @@ mod tests {
         assert!(profile.red_trc.is_some());
         assert!(profile.green_trc.is_some());
         assert!(profile.blue_trc.is_some());
-        let dst = ColorProfile::new_srgb();
+        let dst = ColorProfile::new_srgb::<crate::StdNow>();
         let transform = profile
             .create_transform_8bit(Layout::Rgba, &dst, Layout::Rgba, Default::default())
             .expect("Should create transform from profile with defaulted intent");
@@ -1679,7 +1679,7 @@ mod tests {
                 other
             ),
         }
-        let dst = ColorProfile::new_srgb();
+        let dst = ColorProfile::new_srgb::<crate::StdNow>();
         let transform = profile
             .create_transform_8bit(Layout::Rgba, &dst, Layout::Rgba, Default::default())
             .expect("Should create transform from v4 profile with truncated desc");

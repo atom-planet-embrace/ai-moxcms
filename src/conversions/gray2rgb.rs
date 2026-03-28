@@ -487,8 +487,8 @@ mod tests {
 
     #[test]
     fn gray_rgb_roundtrip() {
-        let gray = ColorProfile::new_gray_with_gamma(2.2);
-        let srgb = ColorProfile::new_srgb();
+        let gray = ColorProfile::new_gray_with_gamma::<crate::StdNow>(2.2);
+        let srgb = ColorProfile::new_srgb::<crate::StdNow>();
 
         let src_layout = [Layout::Gray, Layout::GrayAlpha];
         let dst_layout = [Layout::Rgb, Layout::GrayAlpha, Layout::Rgba, Layout::Gray];

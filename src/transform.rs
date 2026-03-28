@@ -1224,8 +1224,8 @@ mod tests {
 
     #[test]
     fn test_transform_rgb8() {
-        let mut srgb_profile = ColorProfile::new_srgb();
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let mut srgb_profile = ColorProfile::new_srgb::<crate::StdNow>();
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let random_point_x = rand::rng().random_range(0..255);
         let transform = bt2020_profile
             .create_transform_8bit(
@@ -1278,8 +1278,8 @@ mod tests {
 
     #[test]
     fn test_transform_rgba8() {
-        let srgb_profile = ColorProfile::new_srgb();
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let srgb_profile = ColorProfile::new_srgb::<crate::StdNow>();
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let random_point_x = rand::rng().random_range(0..255);
         let transform = bt2020_profile
             .create_transform_8bit(
@@ -1296,8 +1296,8 @@ mod tests {
 
     #[test]
     fn test_transform_gray_to_rgb8() {
-        let gray_profile = ColorProfile::new_gray_with_gamma(2.2f32);
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let gray_profile = ColorProfile::new_gray_with_gamma::<crate::StdNow>(2.2f32);
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let random_point_x = rand::rng().random_range(0..255);
         let transform = gray_profile
             .create_transform_8bit(
@@ -1314,8 +1314,8 @@ mod tests {
 
     #[test]
     fn test_transform_gray_to_rgba8() {
-        let srgb_profile = ColorProfile::new_gray_with_gamma(2.2f32);
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let srgb_profile = ColorProfile::new_gray_with_gamma::<crate::StdNow>(2.2f32);
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let random_point_x = rand::rng().random_range(0..255);
         let transform = srgb_profile
             .create_transform_8bit(
@@ -1332,8 +1332,8 @@ mod tests {
 
     #[test]
     fn test_transform_gray_to_gray_alpha8() {
-        let srgb_profile = ColorProfile::new_gray_with_gamma(2.2f32);
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let srgb_profile = ColorProfile::new_gray_with_gamma::<crate::StdNow>(2.2f32);
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let random_point_x = rand::rng().random_range(0..255);
         let transform = srgb_profile
             .create_transform_8bit(
@@ -1350,8 +1350,8 @@ mod tests {
 
     #[test]
     fn test_transform_rgb10() {
-        let srgb_profile = ColorProfile::new_srgb();
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let srgb_profile = ColorProfile::new_srgb::<crate::StdNow>();
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let random_point_x = rand::rng().random_range(0..((1 << 10) - 1));
         let transform = bt2020_profile
             .create_transform_10bit(
@@ -1368,8 +1368,8 @@ mod tests {
 
     #[test]
     fn test_transform_rgb12() {
-        let srgb_profile = ColorProfile::new_srgb();
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let srgb_profile = ColorProfile::new_srgb::<crate::StdNow>();
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let random_point_x = rand::rng().random_range(0..((1 << 12) - 1));
         let transform = bt2020_profile
             .create_transform_12bit(
@@ -1386,8 +1386,8 @@ mod tests {
 
     #[test]
     fn test_transform_rgb16() {
-        let srgb_profile = ColorProfile::new_srgb();
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let srgb_profile = ColorProfile::new_srgb::<crate::StdNow>();
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let random_point_x = rand::rng().random_range(0..((1u32 << 16u32) - 1u32)) as u16;
         let transform = bt2020_profile
             .create_transform_16bit(
@@ -1404,8 +1404,8 @@ mod tests {
 
     #[test]
     fn test_transform_round_trip_rgb8() {
-        let srgb_profile = ColorProfile::new_srgb();
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let srgb_profile = ColorProfile::new_srgb::<crate::StdNow>();
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let transform = srgb_profile
             .create_transform_8bit(
                 Layout::Rgb,
@@ -1455,8 +1455,8 @@ mod tests {
 
     #[test]
     fn test_transform_round_trip_rgb10() {
-        let srgb_profile = ColorProfile::new_srgb();
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let srgb_profile = ColorProfile::new_srgb::<crate::StdNow>();
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let transform = srgb_profile
             .create_transform_10bit(
                 Layout::Rgb,
@@ -1506,8 +1506,8 @@ mod tests {
 
     #[test]
     fn test_transform_round_trip_rgb12() {
-        let srgb_profile = ColorProfile::new_srgb();
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let srgb_profile = ColorProfile::new_srgb::<crate::StdNow>();
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let transform = srgb_profile
             .create_transform_12bit(
                 Layout::Rgb,
@@ -1557,8 +1557,8 @@ mod tests {
 
     #[test]
     fn test_transform_round_trip_rgb16() {
-        let srgb_profile = ColorProfile::new_srgb();
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let srgb_profile = ColorProfile::new_srgb::<crate::StdNow>();
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
         let transform = srgb_profile
             .create_transform_16bit(
                 Layout::Rgb,
@@ -1609,8 +1609,8 @@ mod tests {
     #[test]
     #[cfg(feature = "extended_range")]
     fn test_transform_rgb_to_gray_extended() {
-        let srgb = ColorProfile::new_srgb();
-        let mut gray_profile = ColorProfile::new_gray_with_gamma(1.0);
+        let srgb = ColorProfile::new_srgb::<crate::StdNow>();
+        let mut gray_profile = ColorProfile::new_gray_with_gamma::<crate::StdNow>(1.0);
         gray_profile.color_space = DataColorSpace::Gray;
         gray_profile.gray_trc = srgb.red_trc.clone();
         let mut test_profile = vec![0.; 4];
@@ -1683,8 +1683,8 @@ mod tests {
     /// Specifically tests the case where even/odd pixels should have independent blue channels.
     #[test]
     fn test_transform_rgb8_pixel_independence() {
-        let srgb_profile = ColorProfile::new_srgb();
-        let bt2020_profile = ColorProfile::new_bt2020();
+        let srgb_profile = ColorProfile::new_srgb::<crate::StdNow>();
+        let bt2020_profile = ColorProfile::new_bt2020::<crate::StdNow>();
 
         let transform = bt2020_profile
             .create_transform_8bit(

@@ -209,7 +209,7 @@ impl ColorProfile {
         ColorProfile::colorants_matrix(WHITE_POINT_D60, ColorPrimaries::ACES_CG);
 
     #[inline]
-    fn basic_rgb_profile() -> ColorProfile {
+    fn basic_rgb_profile<N: crate::Now>() -> ColorProfile {
         ColorProfile {
             profile_class: ProfileClass::DisplayDevice,
             rendering_intent: RenderingIntent::Perceptual,
@@ -245,21 +245,21 @@ impl ColorProfile {
             viewing_conditions_description: None,
             technology: None,
             calibration_date: None,
-            creation_date_time: ColorDateTime { year: 0, month: 0, day_of_the_month: 0, hours: 0, minutes: 0, seconds: 0 },
+            creation_date_time: ColorDateTime::now::<N>(),
             version_internal: ProfileVersion::default(),
         }
     }
 
     /// Creates new profile from CICP
-    pub fn new_from_cicp(cicp_color_primaries: CicpProfile) -> ColorProfile {
-        let mut basic = ColorProfile::basic_rgb_profile();
+    pub fn new_from_cicp<N: crate::Now>(cicp_color_primaries: CicpProfile) -> ColorProfile {
+        let mut basic = ColorProfile::basic_rgb_profile::<N>();
         basic.update_rgb_colorimetry_from_cicp(cicp_color_primaries);
         basic
     }
 
     /// Creates new sRGB profile
-    pub fn new_srgb() -> ColorProfile {
-        let mut profile = ColorProfile::basic_rgb_profile();
+    pub fn new_srgb<N: crate::Now>() -> ColorProfile {
+        let mut profile = ColorProfile::basic_rgb_profile::<N>();
         profile.update_colorants(ColorProfile::SRGB_COLORANTS);
 
         let curve =
@@ -288,8 +288,8 @@ impl ColorProfile {
     }
 
     /// Creates new Adobe RGB profile
-    pub fn new_adobe_rgb() -> ColorProfile {
-        let mut profile = ColorProfile::basic_rgb_profile();
+    pub fn new_adobe_rgb<N: crate::Now>() -> ColorProfile {
+        let mut profile = ColorProfile::basic_rgb_profile::<N>();
         profile.update_colorants(ColorProfile::ADOBE_RGB_COLORANTS);
 
         let curve = curve_from_gamma(2.19921875f32);
@@ -312,8 +312,8 @@ impl ColorProfile {
     }
 
     /// Creates new Display P3 profile
-    pub fn new_display_p3() -> ColorProfile {
-        let mut profile = ColorProfile::basic_rgb_profile();
+    pub fn new_display_p3<N: crate::Now>() -> ColorProfile {
+        let mut profile = ColorProfile::basic_rgb_profile::<N>();
         profile.update_colorants(ColorProfile::DISPLAY_P3_COLORANTS);
 
         let curve =
@@ -342,8 +342,8 @@ impl ColorProfile {
     }
 
     /// Creates new Display P3 PQ profile
-    pub fn new_display_p3_pq() -> ColorProfile {
-        let mut profile = ColorProfile::basic_rgb_profile();
+    pub fn new_display_p3_pq<N: crate::Now>() -> ColorProfile {
+        let mut profile = ColorProfile::basic_rgb_profile::<N>();
         profile.update_colorants(ColorProfile::DISPLAY_P3_COLORANTS);
 
         let curve = ToneReprCurve::Lut(PQ_LUT_TABLE.to_vec());
@@ -372,8 +372,8 @@ impl ColorProfile {
     }
 
     /// Creates new DCI P3 profile
-    pub fn new_dci_p3() -> ColorProfile {
-        let mut profile = ColorProfile::basic_rgb_profile();
+    pub fn new_dci_p3<N: crate::Now>() -> ColorProfile {
+        let mut profile = ColorProfile::basic_rgb_profile::<N>();
         profile.update_colorants(ColorProfile::DCI_P3_COLORANTS);
 
         let curve = curve_from_gamma(2.6f32);
@@ -401,8 +401,8 @@ impl ColorProfile {
     }
 
     /// Creates new ProPhoto RGB profile
-    pub fn new_pro_photo_rgb() -> ColorProfile {
-        let mut profile = ColorProfile::basic_rgb_profile();
+    pub fn new_pro_photo_rgb<N: crate::Now>() -> ColorProfile {
+        let mut profile = ColorProfile::basic_rgb_profile::<N>();
         profile.update_colorants(ColorProfile::PRO_PHOTO_RGB_COLORANTS);
 
         let curve = curve_from_gamma(1.8f32);
@@ -424,8 +424,8 @@ impl ColorProfile {
     }
 
     /// Creates new Bt.2020 profile
-    pub fn new_bt2020() -> ColorProfile {
-        let mut profile = ColorProfile::basic_rgb_profile();
+    pub fn new_bt2020<N: crate::Now>() -> ColorProfile {
+        let mut profile = ColorProfile::basic_rgb_profile::<N>();
         profile.update_colorants(ColorProfile::BT2020_COLORANTS);
 
         let curve = ToneReprCurve::Parametric(create_rec709_parametric().to_vec());
@@ -447,8 +447,8 @@ impl ColorProfile {
     }
 
     /// Creates new Bt.2020 PQ profile
-    pub fn new_bt2020_pq() -> ColorProfile {
-        let mut profile = ColorProfile::basic_rgb_profile();
+    pub fn new_bt2020_pq<N: crate::Now>() -> ColorProfile {
+        let mut profile = ColorProfile::basic_rgb_profile::<N>();
         profile.update_colorants(ColorProfile::BT2020_COLORANTS);
 
         let curve = ToneReprCurve::Lut(PQ_LUT_TABLE.to_vec());
@@ -477,8 +477,8 @@ impl ColorProfile {
     }
 
     /// Creates new Bt.2020 HLG profile
-    pub fn new_bt2020_hlg() -> ColorProfile {
-        let mut profile = ColorProfile::basic_rgb_profile();
+    pub fn new_bt2020_hlg<N: crate::Now>() -> ColorProfile {
+        let mut profile = ColorProfile::basic_rgb_profile::<N>();
         profile.update_colorants(ColorProfile::BT2020_COLORANTS);
 
         let curve = ToneReprCurve::Lut(HLG_LUT_TABLE.to_vec());
@@ -507,7 +507,7 @@ impl ColorProfile {
     }
 
     /// Creates new Monochrome profile
-    pub fn new_gray_with_gamma(gamma: f32) -> ColorProfile {
+    pub fn new_gray_with_gamma<N: crate::Now>(gamma: f32) -> ColorProfile {
         ColorProfile {
             gray_trc: Some(curve_from_gamma(gamma)),
             profile_class: ProfileClass::DisplayDevice,
@@ -547,14 +547,14 @@ impl ColorProfile {
             viewing_conditions_description: None,
             technology: None,
             calibration_date: None,
-            creation_date_time: ColorDateTime { year: 0, month: 0, day_of_the_month: 0, hours: 0, minutes: 0, seconds: 0 },
+            creation_date_time: ColorDateTime::now::<N>(),
             version_internal: ProfileVersion::default(),
         }
     }
 
     /// Creates new ACES 2065-1/AP0 profile
-    pub fn new_aces_aces_2065_1_linear() -> ColorProfile {
-        let mut profile = ColorProfile::basic_rgb_profile();
+    pub fn new_aces_aces_2065_1_linear<N: crate::Now>() -> ColorProfile {
+        let mut profile = ColorProfile::basic_rgb_profile::<N>();
         profile.update_colorants(ColorProfile::ACES_2065_1_COLORANTS);
 
         let curve = ToneReprCurve::Lut(vec![]);
@@ -576,8 +576,8 @@ impl ColorProfile {
     }
 
     /// Creates new ACEScg profile
-    pub fn new_aces_cg_linear() -> ColorProfile {
-        let mut profile = ColorProfile::basic_rgb_profile();
+    pub fn new_aces_cg_linear<N: crate::Now>() -> ColorProfile {
+        let mut profile = ColorProfile::basic_rgb_profile::<N>();
         profile.update_colorants(ColorProfile::ACES_CG_COLORANTS);
 
         let curve = ToneReprCurve::Lut(vec![]);
@@ -599,7 +599,7 @@ impl ColorProfile {
     }
 
     /// Creates new Generic CIE LAB profile
-    pub fn new_lab() -> ColorProfile {
+    pub fn new_lab<N: crate::Now>() -> ColorProfile {
         let mut profile = ColorProfile {
             profile_class: ProfileClass::DisplayDevice,
             rendering_intent: RenderingIntent::Perceptual,
@@ -635,7 +635,7 @@ impl ColorProfile {
             viewing_conditions_description: None,
             technology: None,
             calibration_date: None,
-            creation_date_time: ColorDateTime { year: 0, month: 0, day_of_the_month: 0, hours: 0, minutes: 0, seconds: 0 },
+            creation_date_time: ColorDateTime::now::<N>(),
             version_internal: ProfileVersion::default(),
         };
 
