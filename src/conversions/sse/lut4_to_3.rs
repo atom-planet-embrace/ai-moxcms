@@ -42,6 +42,7 @@ use crate::{
     TransformExecutor, TransformOptions,
 };
 use num_traits::AsPrimitive;
+#[cfg(not(feature = "std"))]
 use num_traits::float::FloatCore;
 #[cfg(target_arch = "x86")]
 use core::arch::x86::*;
