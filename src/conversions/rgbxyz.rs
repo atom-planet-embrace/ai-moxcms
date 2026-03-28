@@ -612,7 +612,7 @@ where
     u32: AsPrimitive<T>,
 {
     #[cfg(all(feature = "avx_shaper_paths", target_arch = "x86_64"))]
-    if std::arch::is_x86_feature_detected!("avx2") && std::arch::is_x86_feature_detected!("fma") {
+    if crate::is_x86_feature!("avx2") && crate::is_x86_feature!("fma") {
         return make_rgb_xyz_rgb_transform_avx2::<T, LINEAR_CAP>(
             src_layout, dst_layout, profile, gamma_lut, bit_depth,
         );
@@ -621,7 +621,7 @@ where
         feature = "sse_shaper_paths",
         any(target_arch = "x86", target_arch = "x86_64")
     ))]
-    if std::arch::is_x86_feature_detected!("sse4.1") {
+    if crate::is_x86_feature!("sse4.1") {
         return make_rgb_xyz_rgb_transform_sse_41::<T, LINEAR_CAP>(
             src_layout, dst_layout, profile, gamma_lut, bit_depth,
         );
@@ -689,16 +689,16 @@ where
     u32: AsPrimitive<T>,
 {
     #[cfg(all(feature = "avx512_shaper_optimized_paths", target_arch = "x86_64"))]
-    if std::arch::is_x86_feature_detected!("avx512bw")
-        && std::arch::is_x86_feature_detected!("avx512vl")
-        && std::arch::is_x86_feature_detected!("fma")
+    if crate::is_x86_feature!("avx512bw")
+        && crate::is_x86_feature!("avx512vl")
+        && crate::is_x86_feature!("fma")
     {
         return make_rgb_xyz_rgb_transform_avx512_opt::<T, LINEAR_CAP>(
             src_layout, dst_layout, profile, gamma_lut, bit_depth,
         );
     }
     #[cfg(all(feature = "avx_shaper_optimized_paths", target_arch = "x86_64"))]
-    if std::arch::is_x86_feature_detected!("avx2") && std::arch::is_x86_feature_detected!("fma") {
+    if crate::is_x86_feature!("avx2") && crate::is_x86_feature!("fma") {
         return make_rgb_xyz_rgb_transform_avx2_opt::<T, LINEAR_CAP>(
             src_layout, dst_layout, profile, gamma_lut, bit_depth,
         );
@@ -707,7 +707,7 @@ where
         feature = "sse_shaper_optimized_paths",
         any(target_arch = "x86", target_arch = "x86_64")
     ))]
-    if std::arch::is_x86_feature_detected!("sse4.1") {
+    if crate::is_x86_feature!("sse4.1") {
         return make_rgb_xyz_rgb_transform_sse_41_opt::<T, LINEAR_CAP>(
             src_layout, dst_layout, profile, gamma_lut, bit_depth,
         );

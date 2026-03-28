@@ -34,6 +34,7 @@ use crate::math::{FusedMultiplyAdd, FusedMultiplyNegAdd};
 use crate::mlaf::fmla;
 use crate::{Vector3f, Vector4f};
 use core::ops::{Add, Mul, Sub};
+use num_traits::Float;
 
 #[cfg(feature = "options")]
 pub(crate) struct Tetrahedral<const GRID_SIZE: usize> {}

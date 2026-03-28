@@ -234,7 +234,7 @@ where
 {
     fn transform(&self, src: &[T], dst: &mut [T]) -> Result<(), CmsError> {
         unsafe {
-            assert!(std::arch::is_x86_feature_detected!("fma"));
+            assert!(crate::is_x86_feature!("fma"));
             self.transform_impl::<true>(src, dst)
         }
     }

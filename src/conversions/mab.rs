@@ -31,6 +31,7 @@ use alloc::boxed::Box;
 use alloc::vec::Vec;
 use crate::mlaf::mlaf;
 use crate::safe_math::SafeMul;
+use num_traits::Float;
 use crate::{
     CmsError, Cube, DataColorSpace, InPlaceStage, InterpolationMethod, LutMultidimensionalType,
     MalformedSize, Matrix3d, Matrix3f, TransformOptions, Vector3d, Vector3f,

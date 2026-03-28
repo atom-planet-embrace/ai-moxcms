@@ -522,7 +522,7 @@ where
             && dest.is_linear_matrix_shaper();
 
         #[cfg(all(target_arch = "x86_64", feature = "avx_luts"))]
-        if std::arch::is_x86_feature_detected!("avx2") && std::arch::is_x86_feature_detected!("fma")
+        if crate::is_x86_feature!("avx2") && crate::is_x86_feature!("fma")
         {
             return Ok(make_transformer_4x3_avx_fma::<T, GRID_SIZE, BIT_DEPTH>(
                 dst_layout,
@@ -533,7 +533,7 @@ where
             ));
         }
         #[cfg(all(any(target_arch = "x86", target_arch = "x86_64"), feature = "sse_luts"))]
-        if std::arch::is_x86_feature_detected!("sse4.1") {
+        if crate::is_x86_feature!("sse4.1") {
             return Ok(make_transformer_4x3_sse41::<T, GRID_SIZE, BIT_DEPTH>(
                 dst_layout,
                 lut,
@@ -778,7 +778,7 @@ where
             && dest.is_linear_matrix_shaper();
 
         #[cfg(all(feature = "avx_luts", target_arch = "x86_64"))]
-        if std::arch::is_x86_feature_detected!("avx2") && std::is_x86_feature_detected!("fma") {
+        if crate::is_x86_feature!("avx2") && crate::is_x86_feature!("fma") {
             return Ok(make_transformer_3x3_avx_fma::<T, GRID_SIZE, BIT_DEPTH>(
                 src_layout,
                 dst_layout,
@@ -789,7 +789,7 @@ where
             ));
         }
         #[cfg(all(any(target_arch = "x86", target_arch = "x86_64"), feature = "sse_luts"))]
-        if std::arch::is_x86_feature_detected!("sse4.1") {
+        if crate::is_x86_feature!("sse4.1") {
             return Ok(make_transformer_3x3_sse41::<T, GRID_SIZE, BIT_DEPTH>(
                 src_layout,
                 dst_layout,

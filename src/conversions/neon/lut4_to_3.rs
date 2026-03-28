@@ -41,7 +41,7 @@ use crate::{
     BarycentricWeightScale, CmsError, DataColorSpace, InterpolationMethod, Layout,
     TransformExecutor, TransformOptions,
 };
-use num_traits::AsPrimitive;
+use num_traits::{AsPrimitive, Float};
 use core::arch::aarch64::*;
 use core::marker::PhantomData;
 use alloc::sync::Arc;
@@ -240,7 +240,7 @@ impl Lut4x3Factory for NeonLut4x3Factory {
     {
         if options.prefer_fixed_point
             && BIT_DEPTH < 16
-            && std::arch::is_aarch64_feature_detected!("rdm")
+            && crate::is_aarch64_feature!("rdm")
         {
             let q: f32 = if T::FINITE {
                 ((1i32 << BIT_DEPTH as i32) - 1) as f32

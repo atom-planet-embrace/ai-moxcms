@@ -43,8 +43,31 @@
 #![cfg_attr(not(test), no_std)]
 extern crate alloc;
 
-#[cfg(any(feature = "avx", feature = "sse", feature = "avx512", feature = "neon", feature = "std"))]
+#[cfg(feature = "std")]
 extern crate std;
+
+/// Runtime CPU feature detection when `std` is available, compile-time fallback otherwise.
+macro_rules! is_x86_feature {
+    ($feature:tt) => {{
+        #[cfg(feature = "std")]
+        { std::arch::is_x86_feature_detected!($feature) }
+        #[cfg(not(feature = "std"))]
+        { cfg!(target_feature = $feature) }
+    }};
+}
+
+/// Runtime CPU feature detection when `std` is available, compile-time fallback otherwise.
+macro_rules! is_aarch64_feature {
+    ($feature:tt) => {{
+        #[cfg(feature = "std")]
+        { std::arch::is_aarch64_feature_detected!($feature) }
+        #[cfg(not(feature = "std"))]
+        { cfg!(target_feature = $feature) }
+    }};
+}
+
+pub(crate) use is_aarch64_feature;
+pub(crate) use is_x86_feature;
 
 mod chad;
 mod cicp;

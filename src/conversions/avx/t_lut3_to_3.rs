@@ -313,7 +313,7 @@ impl Lut3x3Factory for AvxLut3x3Factory {
             };
         }
         assert!(
-            std::arch::is_x86_feature_detected!("fma"),
+            crate::is_x86_feature!("fma"),
             "Internal configuration error, this might not be called without `fma` feature"
         );
         let lut = lut
