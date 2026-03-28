@@ -1,7 +1,7 @@
 #![no_main]
 
 use libfuzzer_sys::fuzz_target;
-use ai_moxcms::{ColorProfile, Layout, TransformOptions};
+use ai_moxcms::{ColorProfile, Layout, StdNow, TransformOptions};
 
 fuzz_target!(|data: &[u8]| {
     // Never panic expected
@@ -27,7 +27,7 @@ fuzz_target!(|data: &[u8]| {
 
     match profile {
         Ok(profile) => {
-            let new_srgb = ColorProfile::new_srgb();
+            let new_srgb = ColorProfile::new_srgb::<StdNow>();
             for &src_layout in ALL_LAYOUTS {
                 for &dst_layout in ALL_LAYOUTS {
                     _ = profile.create_transform_8bit(

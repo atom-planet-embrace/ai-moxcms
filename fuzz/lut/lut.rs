@@ -1,7 +1,7 @@
 #![no_main]
 
 use libfuzzer_sys::fuzz_target;
-use ai_moxcms::{BarycentricWeightScale, ColorProfile, InterpolationMethod, Layout, TransformOptions};
+use ai_moxcms::{BarycentricWeightScale, ColorProfile, InterpolationMethod, Layout, StdNow, TransformOptions};
 use std::fs;
 use std::sync::LazyLock;
 
@@ -99,7 +99,7 @@ fn fuzz_lut_f32(
 
     let src_image_rgb = vec![px; width * height * 4];
     let mut dst_image_rgb = vec![px; width * height * dst_layout.channels()];
-    let dst_profile = ColorProfile::new_display_p3();
+    let dst_profile = ColorProfile::new_display_p3::<StdNow>();
     let transform = STATIC_US_SWOP
         .create_transform_f32(
             Layout::Rgba,
@@ -134,7 +134,7 @@ fn fuzz_lut_16(
 
     let src_image_rgb = vec![px; width * height * 4];
     let mut dst_image_rgb = vec![px; width * height * dst_layout.channels()];
-    let dst_profile = ColorProfile::new_display_p3();
+    let dst_profile = ColorProfile::new_display_p3::<StdNow>();
     let transform = if bit_depth == 10 {
         STATIC_US_SWOP
             .create_transform_10bit(
@@ -198,7 +198,7 @@ fn fuzz_cmyk_8_bit(
 
     let src_image_rgb = vec![px; width * height * 4];
     let mut dst_image_rgb = vec![px; width * height * dst_layout.channels()];
-    let dst_profile = ColorProfile::new_srgb();
+    let dst_profile = ColorProfile::new_srgb::<StdNow>();
     let transform = STATIC_US_SWOP
         .create_transform_8bit(
             Layout::Rgba,
@@ -232,7 +232,7 @@ fn fuzz_lut_rgb_8_bit(
 
     let src_image_rgb = vec![px; width * height * 4];
     let mut dst_image_rgb = vec![px; width * height * dst_layout.channels()];
-    let dst_profile = ColorProfile::new_display_p3();
+    let dst_profile = ColorProfile::new_display_p3::<StdNow>();
     let transform = STATIC_SRGB_PERCEPTUAL
         .create_transform_8bit(
             Layout::Rgba,

@@ -27,8 +27,6 @@
  * // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 #[cfg(feature = "in_place")]
-use alloc::vec;
-#[cfg(feature = "in_place")]
 use crate::InPlaceTransformExecutor;
 use alloc::boxed::Box;
 use crate::transform::PointeeSizeExpressible;

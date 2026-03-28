@@ -1,7 +1,7 @@
 #![no_main]
 
 use libfuzzer_sys::fuzz_target;
-use ai_moxcms::{ColorProfile, InterpolationMethod, Layout, TransformOptions};
+use ai_moxcms::{ColorProfile, InterpolationMethod, Layout, StdNow, TransformOptions};
 
 fuzz_target!(|data: (u8, u8, u16, u8, u8, u8, u8, f32)| {
     let src_layout = if data.3 % 2 == 0 {
@@ -70,8 +70,8 @@ fn fuzz_8_bit(
     }
     let src_image_rgb = vec![px; width * height * src_layout.channels()];
     let mut dst_image_rgb = vec![px; width * height * dst_layout.channels()];
-    let src_profile = ColorProfile::new_srgb();
-    let dst_profile = ColorProfile::new_bt2020();
+    let src_profile = ColorProfile::new_srgb::<StdNow>();
+    let dst_profile = ColorProfile::new_bt2020::<StdNow>();
     let transform = src_profile
         .create_transform_8bit(
             src_layout,
@@ -93,8 +93,8 @@ fn fuzz_8_bit_in_place(width: usize, height: usize, px: u8, src_layout: Layout) 
         return;
     }
     let mut src_image_rgb = vec![px; width * height * src_layout.channels()];
-    let src_profile = ColorProfile::new_srgb();
-    let dst_profile = ColorProfile::new_bt2020();
+    let src_profile = ColorProfile::new_srgb::<StdNow>();
+    let dst_profile = ColorProfile::new_bt2020::<StdNow>();
     let transform = src_profile
         .create_in_place_transform_8bit(
             src_layout,
@@ -122,8 +122,8 @@ fn fuzz_16_bit(
     }
     let src_image_rgb = vec![px; width * height * src_layout.channels()];
     let mut dst_image_rgb = vec![px; width * height * dst_layout.channels()];
-    let src_profile = ColorProfile::new_srgb();
-    let dst_profile = ColorProfile::new_bt2020();
+    let src_profile = ColorProfile::new_srgb::<StdNow>();
+    let dst_profile = ColorProfile::new_bt2020::<StdNow>();
     let transform = if bp == 10 {
         src_profile
             .create_transform_10bit(

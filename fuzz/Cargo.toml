@@ -12,10 +12,10 @@ libfuzzer-sys = "0.4"
 
 [dependencies.ai-moxcms]
 path = ".."
-features = ["options", "in_place"]
+features = ["options", "in_place", "std"]
 
 [features]
-default = ["ai-moxcms/options", "ai-moxcms/in_place"]
+default = ["ai-moxcms/options", "ai-moxcms/in_place", "ai-moxcms/std"]
 avx = ["ai-moxcms/avx_luts", "ai-moxcms/avx_shaper_fixed_point_paths", "ai-moxcms/avx_shaper_optimized_paths", "ai-moxcms/avx_shaper_paths", "ai-moxcms/in_place"]
 sse = ["ai-moxcms/sse_luts", "ai-moxcms/sse_shaper_fixed_point_paths", "ai-moxcms/sse_shaper_optimized_paths", "ai-moxcms/sse_shaper_paths", "ai-moxcms/in_place"]
 neon = ["ai-moxcms/neon_luts", "ai-moxcms/neon_shaper_fixed_point_paths", "ai-moxcms/neon_shaper_optimized_paths", "ai-moxcms/neon_shaper_paths", "ai-moxcms/in_place"]
